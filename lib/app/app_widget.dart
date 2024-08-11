@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_challenge_bento/app/shared/routes/app_routes.dart';
 
 import 'presentation/home/bloc/product_cubit.dart';
-import 'presentation/home/pages/home_page.dart';
+import 'shared/routes/app_on_generate.dart';
 import 'shared/theme/theme_cubit.dart';
 
 class AppWidget extends StatelessWidget {
@@ -24,7 +25,8 @@ class AppWidget extends StatelessWidget {
         builder: (_, theme) {
           return MaterialApp(
             theme: theme,
-            home: const HomePage(),
+            onGenerateRoute: RouteGenerator.onGenerate,
+            initialRoute: AppRoutes.onBoarding,
           );
         },
       ),

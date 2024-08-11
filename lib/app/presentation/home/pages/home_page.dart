@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_challenge_bento/app/presentation/home/bloc/product_cubit.dart';
 import 'package:flutter_challenge_bento/app/presentation/home/bloc/product_state.dart';
-import 'package:flutter_challenge_bento/app/shared/theme/app_colors.dart';
+import 'package:flutter_challenge_bento/app/shared/constants/app_colors.dart';
 import 'package:flutter_challenge_bento/app/shared/theme/is_dark_mode.dart';
 
 import '../../../domain/entities/product_entity.dart';
@@ -71,7 +71,7 @@ class HomePage extends StatelessWidget {
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             color: context.isDarkMode
-                                ? AppColors.darkGrey
+                                ? AppColors.gray
                                 : const Color(0xffE6E6E6),
                           ),
                           child: Icon(

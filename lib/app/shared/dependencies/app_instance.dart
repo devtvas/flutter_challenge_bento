@@ -5,15 +5,15 @@ import 'package:get_it/get_it.dart';
 
 import '../../domain/repositories/product_repository.dart';
 
-final dependencies = GetIt.instance;
+final instances = GetIt.instance;
 
 Future<void> initializeDependencies() async {
   // DATASOURCE
-  dependencies.registerSingleton<ProductSource>(ProductSourceImpl());
+  instances.registerSingleton<ProductSource>(ProductSourceImpl());
 
   // REPOSITORY
-  dependencies.registerSingleton<ProductsRepository>(ProductsRepositoryImpl());
+  instances.registerSingleton<ProductsRepository>(ProductsRepositoryImpl());
 
   // USECASE
-  dependencies.registerSingleton<ProductUseCase>(ProductUseCase());
+  instances.registerSingleton<ProductUseCase>(ProductUseCase());
 }

@@ -41,6 +41,8 @@ dependencies:
   flutter_bloc: ^8.1.6
   get_it:
   dartz:
+  flutter_svg:
+  cached_network_image:
 
   
 
@@ -69,6 +71,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
+    - assets/icons/
     - assets/.env
   #   - images/a_dot_ham.jpeg
 
