@@ -1,12 +1,14 @@
+import 'package:flutter_challenge_bento/app/domain/entities/product_entity.dart';
+
 class ProductModel {
-  final String id;
-  final String name;
-  final String description;
-  final String category;
-  final String image;
-  final String price;
-  final String material;
-  final String department;
+  String? id;
+  String? name;
+  String? description;
+  String? category;
+  String? image;
+  String? price;
+  String? material;
+  String? department;
 
   ProductModel({
     required this.id,
@@ -19,29 +21,29 @@ class ProductModel {
     required this.department,
   });
 
-  factory ProductModel.fromJson(Map<String, dynamic> json) {
-    return ProductModel(
-      id: json['id'] as String,
-      name: json['nome'] as String,
-      description: json['descricao'] as String,
-      category: json['categoria'] as String,
-      image: json['imagem'] as String,
-      price: json['preco'] as String,
-      material: json['material'] as String,
-      department: json['departamento'] as String,
-    );
+  ProductModel.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['nome'];
+    description = json['descricao'];
+    category = json['categoria'];
+    image = json['imagem'];
+    price = json['preco'];
+    material = json['material'];
+    department = json['departamento'];
   }
+}
 
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'name': name,
-      'description': description,
-      'category': category,
-      'image': image,
-      'price': price,
-      'material': material,
-      'department': department,
-    };
+extension ProductModelX on ProductModel {
+  ProductEntity toEntity() {
+    return ProductEntity(
+      id: id!,
+      name: name!,
+      description: description!,
+      category: category!,
+      image: image!,
+      price: price!,
+      material: material!,
+      department: department!,
+    );
   }
 }
