@@ -4,17 +4,18 @@
 
 ## Design 
 
-![](./assets/design.png)
+![](./assets/images/design.png)
 
 ## V1
 
-![](./assets/v1.png)
+![](./assets/images/v1.png)
 
 ## Comandos iniciais do projeto
 
 ```
 $ git clone <project>
 $ cd flutter_challenge_bento
+$ flutter pub get
 $ flutter run
 ```
 
