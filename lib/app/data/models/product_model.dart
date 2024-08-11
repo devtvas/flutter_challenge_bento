@@ -22,13 +22,13 @@ class ProductModel {
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
       id: json['id'] as String,
-      name: json['name'] as String,
-      description: json['description'] as String,
-      category: json['category'] as String,
-      image: json['image'] as String,
-      price: json['price'] as String,
+      name: json['nome'] as String,
+      description: json['descricao'] as String,
+      category: json['categoria'] as String,
+      image: json['imagem'] as String,
+      price: json['preco'] as String,
       material: json['material'] as String,
-      department: json['department'] as String,
+      department: json['departamento'] as String,
     );
   }
 
