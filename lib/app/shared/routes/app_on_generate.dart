@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_challenge_bento/app/presentation/home/pages/home_page.dart';
 import 'package:flutter_challenge_bento/app/presentation/unknown/unknown_page.dart';
 import 'package:flutter_challenge_bento/app/shared/routes/app_routes.dart';
 
@@ -11,6 +12,8 @@ class RouteGenerator {
     switch (route) {
       case AppRoutes.onBoarding:
         return CupertinoPageRoute(builder: (_) => const OnBoardingPage());
+      case AppRoutes.homePage:
+        return CupertinoPageRoute(builder: (_) => const HomePage());
       default:
         return errorRoute();
     }

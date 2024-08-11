@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_challenge_bento/app/shared/routes/app_routes.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../constants/app_icons.dart';
@@ -13,7 +14,7 @@ class AppBackButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       icon: SvgPicture.asset(AppIcons.arrowBackward),
-      onPressed: () => Navigator.pop(context),
+      onPressed: () => Navigator.pushNamed(context, AppRoutes.homePage),
     );
   }
 }
