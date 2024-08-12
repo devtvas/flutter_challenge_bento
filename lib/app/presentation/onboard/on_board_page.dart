@@ -33,12 +33,12 @@ class _OnboardingPageState extends State<OnBoardingPage> {
         curve: Curves.ease,
       );
     } else {
-      _gotoHome();
+      _gotoEntryPointUI();
     }
   }
 
-  _gotoHome() {
-    Navigator.pushNamed(context, AppRoutes.homePage);
+  _gotoEntryPointUI() {
+    Navigator.pushNamed(context, AppRoutes.entryPointUI);
   }
 
   @override
@@ -95,7 +95,9 @@ class _OnboardingPageState extends State<OnBoardingPage> {
                 ),
                 ElevatedButton(
                   onPressed: _gotoNextPage,
-                  style: ElevatedButton.styleFrom(shape: const CircleBorder()),
+                  style: ElevatedButton.styleFrom(
+                      shape: const CircleBorder(),
+                      backgroundColor: AppColors.primary),
                   child: SvgPicture.asset(
                     AppIcons.arrowForward,
                     colorFilter: const ColorFilter.mode(

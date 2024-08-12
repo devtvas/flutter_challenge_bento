@@ -43,6 +43,8 @@ dependencies:
   dartz:
   flutter_svg:
   cached_network_image:
+  animations:
+  awesome_bottom_bar: ^1.2.4
 
   
 

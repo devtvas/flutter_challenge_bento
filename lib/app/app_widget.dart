@@ -25,8 +25,9 @@ class AppWidget extends StatelessWidget {
         builder: (_, theme) {
           return MaterialApp(
             theme: theme,
+            debugShowCheckedModeBanner: false,
             onGenerateRoute: RouteGenerator.onGenerate,
-            initialRoute: AppRoutes.onBoarding,
+            initialRoute: AppRoutes.onBoardingPage,
           );
         },
       ),

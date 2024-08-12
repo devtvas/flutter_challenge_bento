@@ -5,15 +5,15 @@ import 'package:flutter_challenge_bento/app/shared/constants/app_default.dart';
 
 import '../../shared/routes/app_routes.dart';
 
-class UnknownPage extends StatelessWidget {
-  const UnknownPage({super.key});
+class AccountPage extends StatelessWidget {
+  const AccountPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: const AppBackButton(),
-        title: const Text('Unknown Page'),
+        title: const Text('Discount Page'),
       ),
       body: Column(
         children: [
@@ -36,7 +36,7 @@ class UnknownPage extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  'oppss!! something wrong',
+                  'Sorry! we are under construction.',
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
@@ -44,14 +44,6 @@ class UnknownPage extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 16),
-                const Padding(
-                  padding:
-                      EdgeInsets.symmetric(horizontal: AppDefaults.padding),
-                  child: Text(
-                    'Sorry, something went wrong\nplease try again .',
-                    textAlign: TextAlign.center,
-                  ),
-                ),
               ],
             ),
           ),
