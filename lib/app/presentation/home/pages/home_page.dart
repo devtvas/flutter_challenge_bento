@@ -24,6 +24,7 @@ class _HomePageState extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _appBar(),
+              const SizedBox(height: 8),
               _cardOptions(),
               Padding(
                 padding: const EdgeInsets.all(16.0),
@@ -311,16 +312,26 @@ class _HomePageState extends State<HomePage> {
   }
 
 //2
-
-  static const _alignments = [
+  static const _alignments0 = [
     // Alignment.topLeft,
     Alignment.topRight,
     // Alignment.bottomLeft,
     Alignment.bottomRight,
   ];
-  var _index = 0;
+  static const _alignments1 = [
+    // Alignment.topLeft,
+    Alignment.topRight,
+    // Alignment.bottomLeft,
+    Alignment.bottomRight,
+  ];
+  var _index0 = 0;
+  var _index1 = 1;
 
-  AlignmentGeometry get _alignment => _alignments[_index % _alignments.length];
+  AlignmentGeometry get _alignment0 =>
+      _alignments0[_index0 % _alignments0.length];
+  AlignmentGeometry get _alignment1 =>
+      _alignments1[_index1 % _alignments1.length];
+
   Widget _cardOptions() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -368,7 +379,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       child: InkWell(
                         child: AnimatedAlign(
-                          alignment: _alignment,
+                          alignment: _alignment0,
                           duration: const Duration(seconds: 2),
                           curve: Curves.easeInOutBack,
                           child: SizedBox(
@@ -382,7 +393,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         onTap: () {
                           setState(() {
-                            _index++;
+                            _index0++;
                           });
                         },
                       ),
@@ -392,19 +403,70 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          SizedBox(width: 16),
+          const SizedBox(width: 16),
           Expanded(
-            child: Card(
-              color: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Row(
-                  children: [
-                    Icon(Icons.store, color: Colors.black),
-                    SizedBox(width: 8),
-                    Text('LOCAL SHOP'),
-                  ],
-                ),
+            child: Container(
+              height: 80,
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
+              decoration: BoxDecoration(
+                color: AppColors.primaryLigth,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        color: Colors.transparent,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          bottomLeft: Radius.circular(20),
+                        ),
+                      ),
+                      child: const Center(
+                        child: Text(
+                          'LOCAL \nSHOP',
+                          style: TextStyle(
+                            color: AppColors.secondary,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      height: 80,
+                      decoration: const BoxDecoration(
+                        color: Colors.transparent,
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(20),
+                          bottomRight: Radius.circular(20),
+                        ),
+                      ),
+                      child: InkWell(
+                        child: AnimatedAlign(
+                          alignment: _alignment1,
+                          duration: const Duration(seconds: 2),
+                          curve: Curves.easeInOutBack,
+                          child: SizedBox(
+                            width: 50.0,
+                            height: 50.0,
+                            child: Image.asset(
+                              AppImages.imageCardStoreV3,
+                              height: 40,
+                            ),
+                          ),
+                        ),
+                        onTap: () {
+                          setState(() {
+                            _index1--;
+                          });
+                        },
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
