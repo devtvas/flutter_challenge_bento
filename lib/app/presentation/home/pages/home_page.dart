@@ -1,8 +1,7 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
 import 'package:flutter_challenge_bento/app/presentation/home/widgets/text_description.dart';
 import 'package:flutter_challenge_bento/app/shared/constants/app_colors.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../shared/constants/app_images.dart';
 import '../widgets/category_item.dart';
@@ -27,8 +26,9 @@ class _HomePageState extends State<HomePage> {
               _appBar(),
               const SizedBox(height: 8),
               _cardOptions(),
-              const SizedBox(height: 8),
+              const SizedBox(height: 16),
               _carouselOptions(),
+              const SizedBox(height: 30),
               TextDescription(textDescription: 'Shop by category'),
               const SizedBox(height: 8),
               SingleChildScrollView(
@@ -49,8 +49,8 @@ class _HomePageState extends State<HomePage> {
                 onTap: () => print('See all'),
               ),
               const SizedBox(height: 8),
-              //
-              SizedBox(height: 32),
+              // gridview of cards
+              const SizedBox(height: 32),
             ],
           ),
         ),
@@ -280,148 +280,188 @@ class _HomePageState extends State<HomePage> {
   }
 
 // 3
+  final cardController = PageController(viewportFraction: 0.8, keepPage: true);
   Widget _carouselOptions() {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Top deal!',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          SizedBox(height: 8),
-          Card(
-            child: Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'FRESH AVOCADO',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    'UP TO 15% OFF',
-                    style: TextStyle(
-                      color: Colors.green,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(height: 8),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Text('Shop Now'),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
-                    ),
-                  ),
-                ],
+    // return Padding(
+    //   padding: const EdgeInsets.all(16.0),
+    //   child: Column(
+    //     crossAxisAlignment: CrossAxisAlignment.start,
+    //     children: [
+    //       Container(
+    //         width: 358,
+    //         height: 122.0000228881836,
+    //         child: Stack(
+    //           children: <Widget>[
+    //             Positioned(
+    //                 top: 0,
+    //                 left: 0,
+    //                 child: Container(
+    //                     width: 358,
+    //                     height: 122,
+    //                     decoration: BoxDecoration(
+    //                       borderRadius: BorderRadius.only(
+    //                         topLeft: Radius.circular(8),
+    //                         topRight: Radius.circular(8),
+    //                         bottomLeft: Radius.circular(8),
+    //                         bottomRight: Radius.circular(8),
+    //                       ),
+    //                       color: Color.fromRGBO(251, 236, 214, 1),
+    //                     ))),
+    //             Positioned(
+    //                 top: 0,
+    //                 left: 0,
+    //                 child: Container(
+    //                     width: 126,
+    //                     height: 122,
+    //                     decoration: BoxDecoration(
+    //                       image: DecorationImage(
+    //                           image: AssetImage('assets/images/avatar_v1.png'),
+    //                           fit: BoxFit.fitWidth),
+    //                     ))),
+    //             Positioned(
+    //               top: 24,
+    //               left: 85,
+    //               child: Container(
+    //                 width: 188,
+    //                 height: 50,
+    //                 child: Stack(
+    //                   children: <Widget>[
+    //                     Positioned(
+    //                         top: 31,
+    //                         left: 38,
+    //                         child: Text(
+    //                           'UP TO 15% OFF',
+    //                           textAlign: TextAlign.left,
+    //                           style: TextStyle(
+    //                               color: Color.fromRGBO(35, 170, 73, 1),
+    //                               fontFamily: 'SF Pro Rounded',
+    //                               fontSize: 14,
+    //                               letterSpacing:
+    //                                   0 /*percentages not used in flutter. defaulting to zero*/,
+    //                               fontWeight: FontWeight.normal,
+    //                               height: 1.3571428571428572),
+    //                         )),
+    //                     Positioned(
+    //                       top: 0,
+    //                       left: 0,
+    //                       child: Text(
+    //                         'FRESH AVOCADO',
+    //                         textAlign: TextAlign.left,
+    //                         style: TextStyle(
+    //                             color: Color.fromRGBO(26, 33, 40, 1),
+    //                             fontFamily: 'Aclonica',
+    //                             fontSize: 20,
+    //                             letterSpacing:
+    //                                 0 /*percentages not used in flutter. defaulting to zero*/,
+    //                             fontWeight: FontWeight.normal,
+    //                             height: 0.95),
+    //                       ),
+    //                     ),
+    //                   ],
+    //                 ),
+    //               ),
+    //             ),
+    //             Positioned(
+    //                 top: 37.8948974609375,
+    //                 left: 247.60162353515625,
+    //                 child: Transform.rotate(
+    //                   angle: 15.43302448321973 * (math.pi / 180),
+    //                   child: Container(
+    //                       width: 89.79251098632812,
+    //                       height: 87.25121307373047,
+    //                       decoration: BoxDecoration(
+    //                         image: DecorationImage(
+    //                             image: AssetImage(AppImages.imageCardStore),
+    //                             fit: BoxFit.fitWidth),
+    //                       )),
+    //                 )),
+    //             Positioned(
+    //               top: 41,
+    //               left: 262,
+    //               child: Container(
+    //                 width: 63,
+    //                 height: 61,
+    //                 decoration: BoxDecoration(
+    //                   color: Color.fromRGBO(235, 153, 0, 1),
+    //                   borderRadius: BorderRadius.all(Radius.elliptical(63, 61)),
+    //                 ),
+    //               ),
+    //             ),
+    //             Text(
+    //               'Top deal!',
+    //               style: TextStyle(
+    //                 fontSize: 18,
+    //                 fontWeight: FontWeight.bold,
+    //               ),
+    //             ),
+    //             SizedBox(height: 8),
+    //             ElevatedButton(
+    //               onPressed: () {},
+    //               child: Text('Shop Now'),
+    //               style: ElevatedButton.styleFrom(
+    //                 backgroundColor: Colors.green,
+    //               ),
+    //             ),
+    //           ],
+    //         ),
+    //       )
+    //     ],
+    //   ),
+    // );
+    return Column(
+      children: [
+        SizedBox(
+          height: 200,
+          width: double.infinity,
+          child: PageView(
+            controller: cardController,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  color: Colors.amber,
+                  width: 100,
+                  height: 40,
+                ),
               ),
-            ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  color: Colors.amber,
+                  width: 100,
+                  height: 40,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  color: Colors.amber,
+                  width: 100,
+                  height: 40,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  color: Colors.amber,
+                  width: 100,
+                  height: 40,
+                ),
+              ),
+            ],
           ),
-          // Figma Flutter Generator BannerWidget - GROUP
-          Container(
-              width: 358,
-              height: 122.0000228881836,
-              child: Stack(children: <Widget>[
-                Positioned(
-                    top: 0,
-                    left: 0,
-                    child: Container(
-                        width: 358,
-                        height: 122,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(8),
-                            topRight: Radius.circular(8),
-                            bottomLeft: Radius.circular(8),
-                            bottomRight: Radius.circular(8),
-                          ),
-                          color: Color.fromRGBO(251, 236, 214, 1),
-                        ))),
-                Positioned(
-                    top: 0,
-                    left: 0,
-                    child: Container(
-                        width: 126,
-                        height: 122,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage('assets/images/avatar_v1.png'),
-                              fit: BoxFit.fitWidth),
-                        ))),
-                Positioned(
-                    top: 24,
-                    left: 85,
-                    child: Container(
-                        width: 188,
-                        height: 50,
-                        child: Stack(children: <Widget>[
-                          Positioned(
-                              top: 31,
-                              left: 38,
-                              child: Text(
-                                'Get Up to 60% Off',
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                    color: Color.fromRGBO(35, 170, 73, 1),
-                                    fontFamily: 'SF Pro Rounded',
-                                    fontSize: 14,
-                                    letterSpacing:
-                                        0 /*percentages not used in flutter. defaulting to zero*/,
-                                    fontWeight: FontWeight.normal,
-                                    height: 1.3571428571428572),
-                              )),
-                          Positioned(
-                              top: 0,
-                              left: 0,
-                              child: Text(
-                                'Fresh Vegetables',
-                                textAlign: TextAlign.left,
-                                style: TextStyle(
-                                    color: Color.fromRGBO(26, 33, 40, 1),
-                                    fontFamily: 'Aclonica',
-                                    fontSize: 20,
-                                    letterSpacing:
-                                        0 /*percentages not used in flutter. defaulting to zero*/,
-                                    fontWeight: FontWeight.normal,
-                                    height: 0.95),
-                              )),
-                        ]))),
-                Positioned(
-                    top: 37.8948974609375,
-                    left: 247.60162353515625,
-                    child: Transform.rotate(
-                      angle: 15.43302448321973 * (math.pi / 180),
-                      child: Container(
-                          width: 89.79251098632812,
-                          height: 87.25121307373047,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: AssetImage(AppImages.imageCardStore),
-                                fit: BoxFit.fitWidth),
-                          )),
-                    )),
-                Positioned(
-                    top: 41,
-                    left: 262,
-                    child: Container(
-                        width: 63,
-                        height: 61,
-                        decoration: BoxDecoration(
-                          color: Color.fromRGBO(235, 153, 0, 1),
-                          borderRadius:
-                              BorderRadius.all(Radius.elliptical(63, 61)),
-                        ))),
-              ]))
-        ],
-      ),
+        ),
+        const SizedBox(height: 8),
+        SmoothPageIndicator(
+          controller: cardController,
+          count: 4,
+          effect: const ExpandingDotsEffect(
+              activeDotColor: AppColors.primaryLigth,
+              dotColor: AppColors.placeholder,
+              dotHeight: 10,
+              dotWidth: 10),
+        ),
+      ],
     );
   }
 }

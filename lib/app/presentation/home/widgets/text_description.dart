@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_challenge_bento/app/shared/constants/app_colors.dart';
 
 class TextDescription extends StatelessWidget {
   final String textDescription;
@@ -21,16 +22,16 @@ class TextDescription extends StatelessWidget {
           Text(
             textDescription,
             style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: AppColors.secondary),
           ),
           InkWell(
             onTap: onTap,
             child: Text(
               textButton!,
               style: const TextStyle(
-                color: Colors.green,
+                color: AppColors.primaryLigth,
                 fontWeight: FontWeight.bold,
               ),
             ),
