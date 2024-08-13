@@ -5,4 +5,6 @@ class AppImages {
   static const onboarding3 = 'https://i.imgur.com/lHlOUT5.png';
   static const avatar_v1 =
       'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSjOgB-raMIjbkEKMKxcYZR-gCIn1PP-U9qhpz8TI8FfmNVf3bO';
+  static const imageCardStore = 'assets/images/icon_card_store.png';
+  static const imageCardStoreV2 = 'assets/images/icon_card_store_v2.png';
 }

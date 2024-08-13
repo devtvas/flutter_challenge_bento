@@ -2,11 +2,18 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_challenge_bento/app/shared/constants/app_colors.dart';
-import 'package:flutter_challenge_bento/app/shared/constants/app_images.dart';
 
-class HomePage extends StatelessWidget {
+import '../../../shared/constants/app_images.dart';
+import '../widgets/category_item.dart';
+
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,47 +24,7 @@ class HomePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               _appBar(),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Card(
-                        color: Color(0xFF4CAF50),
-                        child: Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: Row(
-                            children: [
-                              Icon(Icons.refresh, color: Colors.white),
-                              SizedBox(width: 8),
-                              Text(
-                                'ORDER AGAIN',
-                                style: TextStyle(color: Colors.white),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 16),
-                    Expanded(
-                      child: Card(
-                        color: Colors.white,
-                        child: Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: Row(
-                            children: [
-                              Icon(Icons.store, color: Colors.black),
-                              SizedBox(width: 8),
-                              Text('LOCAL SHOP'),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              _cardOptions(),
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
@@ -131,7 +98,7 @@ class HomePage extends StatelessWidget {
                                   decoration: BoxDecoration(
                                     image: DecorationImage(
                                         image: AssetImage(
-                                            'assets/images/Kisspnglemonyellowlimevitaminc5a67fe311d4f371.png'),
+                                            'assets/images/avatar_v1.png'),
                                         fit: BoxFit.fitWidth),
                                   ))),
                           Positioned(
@@ -185,7 +152,7 @@ class HomePage extends StatelessWidget {
                                     decoration: BoxDecoration(
                                       image: DecorationImage(
                                           image: AssetImage(
-                                              'assets/images/5a22fe7bc722d81.png'),
+                                              AppImages.imageCardStore),
                                           fit: BoxFit.fitWidth),
                                     )),
                               )),
@@ -300,16 +267,9 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
-}
 
 //1
-class _appBar extends StatelessWidget {
-  const _appBar({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
+  Widget _appBar() {
     return const Padding(
       padding: EdgeInsets.all(16.0),
       child: Row(
@@ -349,26 +309,105 @@ class _appBar extends StatelessWidget {
       ),
     );
   }
-}
 
-class CategoryItem extends StatelessWidget {
-  final IconData icon;
-  final String label;
+//2
 
-  const CategoryItem({super.key, required this.icon, required this.label});
+  static const _alignments = [
+    // Alignment.topLeft,
+    Alignment.topRight,
+    // Alignment.bottomLeft,
+    Alignment.bottomRight,
+  ];
+  var _index = 0;
 
-  @override
-  Widget build(BuildContext context) {
+  AlignmentGeometry get _alignment => _alignments[_index % _alignments.length];
+  Widget _cardOptions() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      child: Column(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: Row(
         children: [
-          CircleAvatar(
-            backgroundColor: Colors.green.withOpacity(0.1),
-            child: Icon(icon, color: Colors.green),
+          Expanded(
+            child: Container(
+              height: 80,
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
+              decoration: BoxDecoration(
+                color: AppColors.primaryLigth,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        color: Colors.transparent,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          bottomLeft: Radius.circular(20),
+                        ),
+                      ),
+                      child: const Center(
+                        child: Text(
+                          'ORDER \nAGAIN',
+                          style: TextStyle(
+                            color: AppColors.secondary,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      height: 80,
+                      decoration: const BoxDecoration(
+                        color: Colors.transparent,
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(20),
+                          bottomRight: Radius.circular(20),
+                        ),
+                      ),
+                      child: InkWell(
+                        child: AnimatedAlign(
+                          alignment: _alignment,
+                          duration: const Duration(seconds: 2),
+                          curve: Curves.easeInOutBack,
+                          child: SizedBox(
+                            width: 50.0,
+                            height: 50.0,
+                            child: Image.asset(
+                              AppImages.imageCardStoreV2,
+                              height: 40,
+                            ),
+                          ),
+                        ),
+                        onTap: () {
+                          setState(() {
+                            _index++;
+                          });
+                        },
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
-          const SizedBox(height: 4),
-          Text(label),
+          SizedBox(width: 16),
+          Expanded(
+            child: Card(
+              color: Colors.white,
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Row(
+                  children: [
+                    Icon(Icons.store, color: Colors.black),
+                    SizedBox(width: 8),
+                    Text('LOCAL SHOP'),
+                  ],
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
