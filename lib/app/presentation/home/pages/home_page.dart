@@ -349,7 +349,7 @@ class _HomePageState extends State<HomePage> {
                   color: isCardOptions
                       ? AppColors.primaryLigth
                       : AppColors.placeholder,
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(10),
                 ),
                 child: Row(
                   children: [
@@ -422,7 +422,7 @@ class _HomePageState extends State<HomePage> {
                   color: isCardOptions
                       ? AppColors.placeholder
                       : AppColors.primaryLigth,
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(10),
                 ),
                 child: Row(
                   children: [
