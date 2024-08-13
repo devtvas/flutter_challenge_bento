@@ -332,142 +332,157 @@ class _HomePageState extends State<HomePage> {
   AlignmentGeometry get _alignment1 =>
       _alignments1[_index1 % _alignments1.length];
 
+  var cardOptionsColor = AppColors.primaryLigth;
+  bool isCardOptions = true;
+
   Widget _cardOptions() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Row(
         children: [
           Expanded(
-            child: Container(
-              height: 80,
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
-              decoration: BoxDecoration(
-                color: AppColors.primaryLigth,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        color: Colors.transparent,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(20),
-                          bottomLeft: Radius.circular(20),
-                        ),
-                      ),
-                      child: const Center(
-                        child: Text(
-                          'ORDER \nAGAIN',
-                          style: TextStyle(
-                            color: AppColors.secondary,
-                            fontWeight: FontWeight.bold,
+            child: InkWell(
+              child: Container(
+                height: 80,
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
+                decoration: BoxDecoration(
+                  color: isCardOptions
+                      ? AppColors.primaryLigth
+                      : AppColors.placeholder,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          color: Colors.transparent,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            bottomLeft: Radius.circular(20),
                           ),
                         ),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      height: 80,
-                      decoration: const BoxDecoration(
-                        color: Colors.transparent,
-                        borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(20),
-                          bottomRight: Radius.circular(20),
-                        ),
-                      ),
-                      child: InkWell(
-                        child: AnimatedAlign(
-                          alignment: _alignment0,
-                          duration: const Duration(seconds: 2),
-                          curve: Curves.easeInOutBack,
-                          child: SizedBox(
-                            width: 50.0,
-                            height: 50.0,
-                            child: Image.asset(
-                              AppImages.imageCardStoreV2,
-                              height: 40,
+                        child: const Center(
+                          child: Text(
+                            'ORDER \nAGAIN',
+                            style: TextStyle(
+                              color: AppColors.secondary,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
-                        onTap: () {
-                          setState(() {
-                            _index0++;
-                          });
-                        },
                       ),
                     ),
-                  ),
-                ],
+                    Expanded(
+                      child: Container(
+                        height: 80,
+                        decoration: const BoxDecoration(
+                          color: Colors.transparent,
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(20),
+                            bottomRight: Radius.circular(20),
+                          ),
+                        ),
+                        child: InkWell(
+                          child: AnimatedAlign(
+                            alignment: _alignment0,
+                            duration: const Duration(seconds: 2),
+                            curve: Curves.easeInOutBack,
+                            child: SizedBox(
+                              width: 50.0,
+                              height: 50.0,
+                              child: Image.asset(
+                                AppImages.imageCardStoreV2,
+                                height: 40,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
+              onTap: () {
+                setState(() {
+                  _index0++;
+                  _index1++;
+                  isCardOptions = !isCardOptions;
+                });
+              },
             ),
           ),
           const SizedBox(width: 16),
           Expanded(
-            child: Container(
-              height: 80,
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
-              decoration: BoxDecoration(
-                color: AppColors.primaryLigth,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        color: Colors.transparent,
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(20),
-                          bottomLeft: Radius.circular(20),
-                        ),
-                      ),
-                      child: const Center(
-                        child: Text(
-                          'LOCAL \nSHOP',
-                          style: TextStyle(
-                            color: AppColors.secondary,
-                            fontWeight: FontWeight.bold,
+            child: InkWell(
+              child: Container(
+                height: 80,
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
+                decoration: BoxDecoration(
+                  color: isCardOptions
+                      ? AppColors.placeholder
+                      : AppColors.primaryLigth,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        decoration: const BoxDecoration(
+                          color: Colors.transparent,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(20),
+                            bottomLeft: Radius.circular(20),
                           ),
                         ),
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      height: 80,
-                      decoration: const BoxDecoration(
-                        color: Colors.transparent,
-                        borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(20),
-                          bottomRight: Radius.circular(20),
-                        ),
-                      ),
-                      child: InkWell(
-                        child: AnimatedAlign(
-                          alignment: _alignment1,
-                          duration: const Duration(seconds: 2),
-                          curve: Curves.easeInOutBack,
-                          child: SizedBox(
-                            width: 50.0,
-                            height: 50.0,
-                            child: Image.asset(
-                              AppImages.imageCardStoreV3,
-                              height: 40,
+                        child: const Center(
+                          child: Text(
+                            'LOCAL \nSHOP',
+                            style: TextStyle(
+                              color: AppColors.secondary,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                         ),
-                        onTap: () {
-                          setState(() {
-                            _index1--;
-                          });
-                        },
                       ),
                     ),
-                  ),
-                ],
+                    Expanded(
+                      child: Container(
+                        height: 80,
+                        decoration: const BoxDecoration(
+                          color: Colors.transparent,
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(20),
+                            bottomRight: Radius.circular(20),
+                          ),
+                        ),
+                        child: InkWell(
+                          child: AnimatedAlign(
+                            alignment: _alignment1,
+                            duration: const Duration(seconds: 2),
+                            curve: Curves.easeInOutBack,
+                            child: SizedBox(
+                              width: 50.0,
+                              height: 50.0,
+                              child: Image.asset(
+                                AppImages.imageCardStoreV3,
+                                height: 40,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
+              onTap: () {
+                setState(() {
+                  _index1++;
+                  _index0++;
+                  isCardOptions = !isCardOptions;
+                });
+              },
             ),
           ),
         ],
