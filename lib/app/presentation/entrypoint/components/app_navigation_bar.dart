@@ -1,8 +1,7 @@
 import 'package:awesome_bottom_bar/awesome_bottom_bar.dart';
 import 'package:awesome_bottom_bar/widgets/inspired/inspired.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_challenge_bento/app/shared/constants/app_icons.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_challenge_bento/app/shared/constants/app_colors.dart';
 
 class AppBottomNavigationBar extends StatefulWidget {
   const AppBottomNavigationBar({
@@ -19,40 +18,48 @@ class AppBottomNavigationBar extends StatefulWidget {
 }
 
 class _AppBottomNavigationBarState extends State<AppBottomNavigationBar> {
-  List<TabItem> items = [
-    TabItem(title: 'Home', icon: null, count: SvgPicture.asset(AppIcons.home)),
+  List<TabItem> items = const [
     TabItem(
-        title: 'Delas',
-        icon: Icons.home,
-        count: SvgPicture.asset(AppIcons.home)),
+      title: 'Home',
+      icon: Icons.home,
+    ),
     TabItem(
-        title: 'Home',
-        icon: Icons.home,
-        count: SvgPicture.asset(AppIcons.home)),
+      title: 'Delas',
+      icon: Icons.local_offer_rounded,
+    ),
     TabItem(
-        title: 'Cart',
-        icon: Icons.home,
-        count: SvgPicture.asset(AppIcons.home)),
+      title: 'Store',
+      icon: Icons.store_rounded,
+    ),
+    TabItem(
+      title: 'Cart',
+      icon: Icons.local_mall_rounded,
+    ),
+    TabItem(
+      title: 'Account',
+      icon: Icons.person,
+    ),
   ];
-  Color color2 = const Color(0XFF96B1FD);
-  Color bgColor = const Color(0XFF1752FE);
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // padding: const EdgeInsets.only(bottom: 30, right: 32, left: 32),
+    return SizedBox(
       child: BottomBarInspiredInside(
-        items: items,
-        backgroundColor: bgColor,
-        color: color2,
-        colorSelected: Colors.white,
-        titleStyle: const TextStyle(fontSize: 8, color: Colors.black),
+        animated: true,
         indexSelected: widget.currentIndex,
-        onTap: (int index) => setState(() {
-          widget.onNavTap(index);
-        }),
-        chipStyle: const ChipStyle(convexBridge: true),
+        items: items,
         itemStyle: ItemStyle.circle,
-        animated: false,
+        backgroundColor: AppColors.scaffoldBackground,
+        color: AppColors.primaryLigth,
+        colorSelected: AppColors.primaryLigth,
+        titleStyle: const TextStyle(fontSize: 10),
+        chipStyle: const ChipStyle(
+            convexBridge: true, background: AppColors.secondary),
+        onTap: (int index) => setState(
+          () {
+            widget.onNavTap(index);
+          },
+        ),
       ),
     );
   }

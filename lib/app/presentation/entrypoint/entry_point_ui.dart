@@ -18,7 +18,7 @@ class EntryPointUI extends StatefulWidget {
 
 class _EntryPointUIState extends State<EntryPointUI> {
   /// Current Page
-  int currentIndex = 0;
+  int currentIndex = 2;
 
   /// On labelLarge navigation tap
   void onBottomNavigationTap(int index) {
