@@ -1,6 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_challenge_bento/app/data/models/today_special_model.dart';
+import 'package:flutter_challenge_bento/app/presentation/home/bloc/product_state.dart';
 import 'package:flutter_challenge_bento/app/presentation/home/widgets/text_description.dart';
 import 'package:flutter_challenge_bento/app/shared/constants/app_colors.dart';
 import 'package:flutter_challenge_bento/app/shared/constants/app_icons.dart';
@@ -8,6 +11,7 @@ import 'package:flutter_challenge_bento/app/shared/constants/app_mock.dart';
 
 import '../../../shared/constants/app_images.dart';
 import '../bloc/product_cubit.dart';
+import '../widgets/today_special_item.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,12 +21,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final ProductCubit productCubit = ProductCubit();
-  var result;
+  final productCubit = ProductCubit();
   @override
   void initState() {
     super.initState();
-    result = productCubit.getProducts();
+    productCubit.getProducts();
   }
 
   @override
@@ -56,6 +59,7 @@ class _HomePageState extends State<HomePage> {
               ),
               const SizedBox(height: 8),
               // gridview of cards
+              _todaySpecial(),
               const SizedBox(height: 32),
             ],
           ),
@@ -385,6 +389,47 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
+  // 5
+
+  final List<TodaySpecialOffer> offers = [
+    TodaySpecialOffer(name: 'Orange', image: AppIcons.fish, rating: 4.5),
+    TodaySpecialOffer(name: 'Cabbage', image: AppIcons.fish, rating: 4.5),
+    // Add more offers as needed
+  ];
+
+  Widget _todaySpecial() {
+    return BlocBuilder<ProductCubit, ProductState>(
+      bloc: productCubit, // optional
+      builder: (context, state) {
+        if (state is ProductLoading) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (state is ProductLoadFailure) {
+          return const Text('Error: ');
+        } else if (state is ProductLoaded) {
+          return Container(
+            width: double.infinity,
+            height: 300,
+            child: GridView.builder(
+              shrinkWrap: true,
+              padding: const EdgeInsets.all(16),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 0.8,
+                crossAxisSpacing: 16,
+                mainAxisSpacing: 16,
+              ),
+              itemCount: offers.length,
+              itemBuilder: (context, index) {
+                return TodaySpecialItem(offer: offers[index]);
+              },
+            ),
+          );
+        }
+        return const SizedBox(height: 32);
+      },
+    );
+  }
 }
 
 class Category {
@@ -412,11 +457,10 @@ class CategoryItem extends StatelessWidget {
               color: Colors.green.shade100,
               borderRadius: BorderRadius.circular(10),
             ),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Image.asset(
-                category.icon,
-              ),
+            child: Image.asset(
+              category.icon,
+              fit: BoxFit.scaleDown,
+              scale: 10,
             ),
           ),
           const SizedBox(height: 8),
