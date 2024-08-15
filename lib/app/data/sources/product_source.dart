@@ -11,15 +11,20 @@ abstract class ProductSource {
   Future<Either> getProducts();
 }
 
+// getProducts
 class ProductSourceImpl extends ProductSource {
   @override
   Future<Either> getProducts() async {
-    final url = dotenv.env['BASE_URL'];
+    String baseUrl = dotenv.env['BASE_URL']!;
+    String endpoint = '/products';
+    String url = '$baseUrl$endpoint';
+
     final response = await http.get(Uri.parse(url.toString()));
-    List<ProductEntity> productEntity = [];
 
     if (response.statusCode == 200) {
       final jsonResponse = jsonDecode(response.body);
+      List<ProductEntity> productEntity = [];
+
       for (final product in jsonResponse) {
         var productModel = ProductModel.fromJson(product);
         productEntity.add(productModel.toEntity());

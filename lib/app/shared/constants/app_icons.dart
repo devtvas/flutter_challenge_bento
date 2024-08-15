@@ -56,4 +56,11 @@ class AppIcons {
   static const contactMap = 'assets/icons/contact_map.svg';
 
   static const cardAdd = 'assets/icons/card_add.svg';
+
+  //png
+  static const vegan = 'assets/icons/category_vegan.png';
+  static const meat = 'assets/icons/category_meat.png';
+  static const fruits = 'assets/icons/category_fruits.png';
+  static const milk = 'assets/icons/category_milk.png';
+  static const fish = 'assets/icons/category_fish.png';
 }

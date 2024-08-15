@@ -7,8 +7,6 @@ class ProductModel {
   String? category;
   String? image;
   String? price;
-  String? material;
-  String? department;
 
   ProductModel({
     required this.id,
@@ -17,19 +15,15 @@ class ProductModel {
     required this.category,
     required this.image,
     required this.price,
-    required this.material,
-    required this.department,
   });
 
   ProductModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    name = json['nome'];
-    description = json['descricao'];
-    category = json['categoria'];
-    image = json['imagem'];
-    price = json['preco'];
-    material = json['material'];
-    department = json['departamento'];
+    name = json['name'];
+    description = json['description'];
+    category = json['category'];
+    image = json['image'];
+    price = json['price'];
   }
 }
 
@@ -42,8 +36,6 @@ extension ProductModelX on ProductModel {
       category: category!,
       image: image!,
       price: price!,
-      material: material!,
-      department: department!,
     );
   }
 }

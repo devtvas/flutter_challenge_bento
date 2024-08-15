@@ -3,9 +3,11 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_challenge_bento/app/presentation/home/widgets/text_description.dart';
 import 'package:flutter_challenge_bento/app/shared/constants/app_colors.dart';
+import 'package:flutter_challenge_bento/app/shared/constants/app_icons.dart';
+import 'package:flutter_challenge_bento/app/shared/constants/app_mock.dart';
 
 import '../../../shared/constants/app_images.dart';
-import '../widgets/category_item.dart';
+import '../bloc/product_cubit.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -15,6 +17,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final ProductCubit productCubit = ProductCubit();
+  var result;
+  @override
+  void initState() {
+    super.initState();
+    result = productCubit.getProducts();
+  }
+
   @override
   Widget build(BuildContext context) {
     Size? size;
@@ -37,18 +47,8 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(height: 30),
               TextDescription(textDescription: 'Shop by category'),
               const SizedBox(height: 8),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    CategoryItem(icon: Icons.eco, label: 'Vegan'),
-                    CategoryItem(icon: Icons.restaurant_menu, label: 'Meat'),
-                    CategoryItem(icon: Icons.apple, label: 'Fruits'),
-                    CategoryItem(icon: Icons.local_drink, label: 'Milk'),
-                    CategoryItem(icon: Icons.set_meal, label: 'Fish'),
-                  ],
-                ),
-              ),
+              _category(),
+              const SizedBox(height: 8),
               TextDescription(
                 textDescription: "Today's Special",
                 textButton: "See all",
@@ -361,6 +361,68 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ],
+    );
+  }
+
+// 4
+  final List<Category> categories = [
+    Category(name: 'Vegan', icon: AppIcons.vegan),
+    Category(name: 'Meat', icon: AppIcons.meat),
+    Category(name: 'Fruits', icon: AppIcons.fruits),
+    Category(name: 'Milk', icon: AppIcons.milk),
+    Category(name: 'Fish', icon: AppIcons.fish),
+  ];
+
+  Widget _category() {
+    return Container(
+      height: 120, // Adjust the height as needed
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: AppMock.categories.length,
+        itemBuilder: (context, index) {
+          return CategoryItem(category: categories[index]);
+        },
+      ),
+    );
+  }
+}
+
+class Category {
+  final String name;
+  final String icon;
+
+  Category({required this.name, required this.icon});
+}
+
+class CategoryItem extends StatelessWidget {
+  final Category category;
+
+  const CategoryItem({Key? key, required this.category}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            height: 80,
+            decoration: BoxDecoration(
+              color: Colors.green.shade100,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Image.asset(
+                category.icon,
+              ),
+            ),
+          ),
+          const SizedBox(height: 8),
+          Text(category.name, textAlign: TextAlign.center),
+        ],
+      ),
     );
   }
 }
