@@ -8,7 +8,17 @@
 
 ## V1
 
-![](./assets/images/v1.png)
+<div style="text-align: center">
+    <table>
+        <tr>
+            <td style="text-align: center">
+                <a href="https://bloclibrary.dev/tutorials/flutter-counter">
+                    <img src="./assets/images/v1.png" width="200"/>
+                </a>
+            </td>            
+    </table>
+</div>
+
 
 ## Comandos iniciais do projeto
 
