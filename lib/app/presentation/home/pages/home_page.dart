@@ -305,7 +305,7 @@ class _HomePageState extends State<HomePage> {
             enlargeCenterPage: true,
             enableInfiniteScroll: true,
             aspectRatio: 16 / 8,
-            viewportFraction: .95,
+            viewportFraction: .92,
             onPageChanged: (index, reason) {
               setState(() {
                 outerCurrentPage = index;
