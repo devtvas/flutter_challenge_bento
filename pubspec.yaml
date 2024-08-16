@@ -39,13 +39,13 @@ dependencies:
   flutter_dotenv: ^5.1.0
   bloc: ^8.1.4
   flutter_bloc: ^8.1.6
+  equatable: 
   get_it:
   dartz:
   flutter_svg:
   cached_network_image:
   animations:
   awesome_bottom_bar: ^1.2.4
-  # smooth_page_indicator: ^1.2.0+3
   carousel_slider:
 
   
