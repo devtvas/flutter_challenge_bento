@@ -6,6 +6,9 @@ class AppColors {
   static const Color primaryLigth = Color(0xFF50E19B);
   static const Color secondary = Color(0xFF0F325A);
 
+  // App colors
+  static const Color gray = Color(0xFF8B8B97);
+
   // Others Color
   static const Color scaffoldBackground = Color(0xFFFFFFFF);
 
@@ -16,5 +19,8 @@ class AppColors {
   static const Color placeholder = Color(0xFF8B8B97);
   static const Color textInputBackground = Color(0xFFF7F7F7);
   static const Color separator = Color(0xFFFAFAFA);
-  static const Color gray = Color(0xFFE1E1E1);
+
+  // Categories colors
+  static const Color greenLigth100 = Color(0xFFE6FAF0);
+  static const Color grayLigth100 = Color(0xFFF5F5F5);
 }

@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_challenge_bento/app/data/models/category_model.dart';
 import 'package:flutter_challenge_bento/app/data/models/today_special_model.dart';
 import 'package:flutter_challenge_bento/app/presentation/home/bloc/product_state.dart';
 import 'package:flutter_challenge_bento/app/presentation/home/widgets/text_description.dart';
@@ -13,6 +14,7 @@ import 'package:flutter_challenge_bento/app/shared/constants/app_mock.dart';
 
 import '../../../shared/constants/app_images.dart';
 import '../bloc/product_cubit.dart';
+import '../widgets/category_item.dart';
 import '../widgets/today_special_item.dart';
 
 class HomePage extends StatefulWidget {
@@ -93,7 +95,7 @@ class _HomePageState extends State<HomePage> {
                   Text(
                     'Bacangar, Sambit',
                     style: TextStyle(
-                      color: Colors.grey,
+                      color: AppColors.gray,
                     ),
                   ),
                   SizedBox(width: 8),
@@ -393,23 +395,30 @@ class _HomePageState extends State<HomePage> {
   }
 
 // 4
-  final List<Category> categories = [
-    Category(name: 'Vegan', icon: AppIcons.vegan),
-    Category(name: 'Meat', icon: AppIcons.meat),
-    Category(name: 'Fruits', icon: AppIcons.fruits),
-    Category(name: 'Milk', icon: AppIcons.milk),
-    Category(name: 'Fish', icon: AppIcons.fish),
+  final List<CategoryModel> categories = [
+    CategoryModel(name: 'Vegan', icon: AppIcons.vegan),
+    CategoryModel(name: 'Meat', icon: AppIcons.meat),
+    CategoryModel(name: 'Fruits', icon: AppIcons.fruits),
+    CategoryModel(name: 'Milk', icon: AppIcons.milk),
+    CategoryModel(name: 'Fish', icon: AppIcons.fish),
   ];
 
   Widget _category() {
-    return Container(
+    return SizedBox(
       height: 120, // Adjust the height as needed
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: AppMock.categories.length,
-        itemBuilder: (context, index) {
-          return CategoryItem(category: categories[index]);
-        },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: AppMock.categories.length,
+          itemBuilder: (context, index) {
+            return CategoryItem(
+              category: categories[index],
+              color:
+                  index == 0 ? AppColors.greenLigth100 : AppColors.grayLigth100,
+            );
+          },
+        ),
       ),
     );
   }
@@ -455,58 +464,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-class Category {
-  final String name;
-  final String icon;
-
-  Category({required this.name, required this.icon});
-}
-
-class CategoryItem extends StatelessWidget {
-  final Category category;
-
-  const CategoryItem({Key? key, required this.category}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            height: 80,
-            decoration: BoxDecoration(
-              color: Colors.green.shade100,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Image.asset(
-              category.icon,
-              fit: BoxFit.scaleDown,
-              scale: 10,
-            ),
-          ),
-          const SizedBox(height: 8),
-          Text(category.name, textAlign: TextAlign.center),
-        ],
-      ),
-    );
-  }
-}
-
-// class AppData {
-//   AppData._();
-//   static final List<String> outerStyleImages = [
-//     'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/new-arrival-discount-offer-on-shoes-poster-ad-design-template-20e8be063593e460ec1eadf156df2a71_screen.jpg?ts=1607504280',
-//     'https://www.mall499.com/wp-content/uploads/2021/12/banner-skechers-1.png',
-//     'https://codecanyon.img.customer.envatousercontent.com/files/352931146/Preview.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=29e647d179d8704189dced38088fac34',
-//     // 'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/shoes-craze-sale-facebook-ad-design-template-b1d1738fd5e9e0f6e3152ec502a1c2e1_screen.jpg?ts=1567579016',
-//     // 'https://codecanyon.img.customer.envatousercontent.com/files/352468295/Preview.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=cea2b1e7878f5ef6b903f9b3625460fe',
-//     // 'https://rstatic.shoecarnival.com/domain/5265_508_20231225_Winter_Season_Store_Locator_Banner2_(1).jpg',
-//     // 'https://graphicsfamily.com/wp-content/uploads/2020/07/Shoes-Advertising-Banner-Design-Template-scaled.jpg',
-//   ];
-// }
 
 class CustomImageViewer {
   CustomImageViewer._();
