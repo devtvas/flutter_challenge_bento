@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_challenge_bento/app/shared/components/app_back_button.dart';
-import 'package:flutter_challenge_bento/app/shared/components/network_image.dart';
 import 'package:flutter_challenge_bento/app/shared/constants/app_default.dart';
+import 'package:flutter_challenge_bento/app/shared/constants/app_images.dart';
 
 import '../../shared/routes/app_routes.dart';
 
@@ -22,10 +22,10 @@ class UnknownPage extends StatelessWidget {
             padding: const EdgeInsets.all(AppDefaults.padding),
             child: SizedBox(
               width: MediaQuery.of(context).size.width * 0.7,
-              child: const AspectRatio(
+              child: AspectRatio(
                 aspectRatio: 1 / 1,
-                child: NetworkImageWithLoader(
-                  'https://i.imgur.com/mVeoFh5.png',
+                child: Image.asset(
+                  AppImages.notFound1,
                   fit: BoxFit.contain,
                 ),
               ),

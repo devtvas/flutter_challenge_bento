@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter_challenge_bento/app/data/sources/products_mock.dart';
 import 'package:flutter_challenge_bento/app/domain/entities/product_entity.dart';
+import 'package:flutter_challenge_bento/app/shared/constants/app_mock.dart';
 
 import '../models/product_model.dart';
 
@@ -12,7 +12,7 @@ abstract class ProductSource {
 class ProductSourceImpl extends ProductSource {
   @override
   Future<Either> getProducts() async {
-    List list = products;
+    List list = AppMock.products;
     List<ProductEntity> productEntity = [];
 
     for (final product in list) {

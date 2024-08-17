@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_challenge_bento/app/shared/components/app_back_button.dart';
-import 'package:flutter_challenge_bento/app/shared/components/network_image.dart';
 import 'package:flutter_challenge_bento/app/shared/constants/app_default.dart';
-
-import '../../shared/routes/app_routes.dart';
+import 'package:flutter_challenge_bento/app/shared/constants/app_images.dart';
 
 class DiscountPage extends StatelessWidget {
   const DiscountPage({super.key});
@@ -12,20 +9,21 @@ class DiscountPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const AppBackButton(),
+        leading: const SizedBox(),
         title: const Text('Discount Page'),
       ),
       body: Column(
+        // crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const Spacer(flex: 2),
+          const Spacer(flex: 1),
           Padding(
             padding: const EdgeInsets.all(AppDefaults.padding),
             child: SizedBox(
               width: MediaQuery.of(context).size.width * 0.7,
-              child: const AspectRatio(
+              child: AspectRatio(
                 aspectRatio: 1 / 1,
-                child: NetworkImageWithLoader(
-                  'https://i.imgur.com/mVeoFh5.png',
+                child: Image.asset(
+                  AppImages.notFound1,
                   fit: BoxFit.contain,
                 ),
               ),
@@ -48,19 +46,19 @@ class DiscountPage extends StatelessWidget {
             ),
           ),
           const Spacer(),
-          Padding(
-            padding: const EdgeInsets.all(AppDefaults.padding * 2),
-            child: SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, AppRoutes.entryPointUI);
-                },
-                child: const Text('Try Again'),
-              ),
-            ),
-          ),
-          const Spacer(),
+          // Padding(
+          //   padding: const EdgeInsets.all(AppDefaults.padding * 2),
+          //   child: SizedBox(
+          //     width: double.infinity,
+          //     child: ElevatedButton(
+          //       onPressed: () {
+          //         Navigator.pushNamed(context, AppRoutes.entryPointUI);
+          //       },
+          //       child: const Text('Try Again'),
+          //     ),
+          //   ),
+          // ),
+          // const Spacer(),
         ],
       ),
     );

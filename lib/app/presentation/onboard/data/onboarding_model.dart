@@ -1,22 +1,22 @@
 import 'dart:convert';
 
 class OnboardingModel {
-  String imageUrl;
+  String image;
   String headline;
   String description;
   OnboardingModel({
-    required this.imageUrl,
+    required this.image,
     required this.headline,
     required this.description,
   });
 
   OnboardingModel copyWith({
-    String? imageUrl,
+    String? image,
     String? headline,
     String? description,
   }) {
     return OnboardingModel(
-      imageUrl: imageUrl ?? this.imageUrl,
+      image: image ?? this.image,
       headline: headline ?? this.headline,
       description: description ?? this.description,
     );
@@ -24,7 +24,7 @@ class OnboardingModel {
 
   Map<String, dynamic> toMap() {
     return {
-      'imageUrl': imageUrl,
+      'image': image,
       'headline': headline,
       'description': description,
     };
@@ -32,7 +32,7 @@ class OnboardingModel {
 
   factory OnboardingModel.fromMap(Map<String, dynamic> map) {
     return OnboardingModel(
-      imageUrl: map['imageUrl'] ?? '',
+      image: map['image'] ?? '',
       headline: map['headline'] ?? '',
       description: map['description'] ?? '',
     );
@@ -45,19 +45,18 @@ class OnboardingModel {
 
   @override
   String toString() =>
-      'OnboardingData(imageUrl: $imageUrl, headline: $headline, description: $description)';
+      'OnboardingData(imageUrl: $image, headline: $headline, description: $description)';
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
 
     return other is OnboardingModel &&
-        other.imageUrl == imageUrl &&
+        other.image == image &&
         other.headline == headline &&
         other.description == description;
   }
 
   @override
-  int get hashCode =>
-      imageUrl.hashCode ^ headline.hashCode ^ description.hashCode;
+  int get hashCode => image.hashCode ^ headline.hashCode ^ description.hashCode;
 }

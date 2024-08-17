@@ -5,19 +5,19 @@ import 'onboarding_model.dart';
 class OnBoardingData {
   static List<OnboardingModel> items = [
     OnboardingModel(
-      imageUrl: AppImages.onboarding1,
+      image: AppImages.onboarding1,
       headline: 'Browse all the category',
       description:
           'In aliquip aute exercitation ut et nisi ut mollit. Deserunt dolor elit pariatur aute .',
     ),
     OnboardingModel(
-      imageUrl: AppImages.onboarding2,
+      image: AppImages.onboarding2,
       headline: 'Amazing Discounts & Offers',
       description:
           'In aliquip aute exercitation ut et nisi ut mollit. Deserunt dolor elit pariatur aute .',
     ),
     OnboardingModel(
-      imageUrl: AppImages.onboarding3,
+      image: AppImages.onboarding3,
       headline: 'Delivery in 30 Min',
       description:
           'In aliquip aute exercitation ut et nisi ut mollit. Deserunt dolor elit pariatur aute .',

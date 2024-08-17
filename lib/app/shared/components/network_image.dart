@@ -1,6 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_challenge_bento/app/shared/components/skeleton.dart';
 import 'package:flutter_challenge_bento/app/shared/constants/app_default.dart';
 
 class NetworkImageWithLoader extends StatelessWidget {
@@ -23,19 +21,8 @@ class NetworkImageWithLoader extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: borderRadius ?? BorderRadius.all(Radius.circular(radius)),
-      child: CachedNetworkImage(
-        fit: fit,
-        imageUrl: src,
-        imageBuilder: (context, imageProvider) => Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: imageProvider,
-              fit: fit,
-            ),
-          ),
-        ),
-        placeholder: (context, url) => const Skeleton(),
-        errorWidget: (context, url, error) => const Icon(Icons.error),
+      child: Image.asset(
+        src,
       ),
     );
   }

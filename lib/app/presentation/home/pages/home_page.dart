@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +24,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final productCubit = ProductCubit();
+  bool isOrderAgain = true;
   @override
   void initState() {
     super.initState();
@@ -101,8 +104,8 @@ class _HomePageState extends State<HomePage> {
           ),
           CircleAvatar(
             radius: 25.0,
-            backgroundImage: NetworkImage(
-              AppImages.avatar_v1,
+            backgroundImage: AssetImage(
+              AppImages.avatarV1,
             ),
           )
         ],
@@ -145,9 +148,7 @@ class _HomePageState extends State<HomePage> {
                 height: 80,
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
                 decoration: BoxDecoration(
-                  color: isCardOptions
-                      ? AppColors.primaryLigth
-                      : AppColors.placeholder,
+                  color: AppColors.primaryLigth,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Row(
@@ -207,6 +208,7 @@ class _HomePageState extends State<HomePage> {
                   _index0++;
                   _index1++;
                   isCardOptions = !isCardOptions;
+                  isOrderAgain = true;
                 });
               },
             ),
@@ -218,9 +220,7 @@ class _HomePageState extends State<HomePage> {
                 height: 80,
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
                 decoration: BoxDecoration(
-                  color: isCardOptions
-                      ? AppColors.placeholder
-                      : AppColors.primaryLigth,
+                  color: AppColors.primaryLigth,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Row(
@@ -280,6 +280,7 @@ class _HomePageState extends State<HomePage> {
                   _index1++;
                   _index0++;
                   isCardOptions = !isCardOptions;
+                  isOrderAgain = false;
                 });
               },
             ),
@@ -291,17 +292,22 @@ class _HomePageState extends State<HomePage> {
 
 // 3
   final cardController = PageController(viewportFraction: 0.8, keepPage: true);
-  CarouselSliderController innerCarouselController = CarouselSliderController();
-  CarouselSliderController outerCarouselController = CarouselSliderController();
+  CarouselSliderController localShopCarouselController =
+      CarouselSliderController();
+  CarouselSliderController orderAgainCarouselController =
+      CarouselSliderController();
   int innerCurrentPage = 0;
   int outerCurrentPage = 0;
+
   Widget _carouselOptions(double height, double width) {
     /// Outer Style Indicators Banner Slider
 
     return Column(
       children: [
         CarouselSlider(
-          carouselController: outerCarouselController,
+          carouselController: isOrderAgain
+              ? orderAgainCarouselController
+              : localShopCarouselController,
 
           /// It's options
           options: CarouselOptions(
@@ -313,22 +319,40 @@ class _HomePageState extends State<HomePage> {
             onPageChanged: (index, reason) {
               setState(() {
                 outerCurrentPage = index;
+                log("$isOrderAgain", name: "isOrderAgain");
               });
             },
           ),
 
-          items: AppData.outerStyleImages.map((imagePath) {
-            return Builder(
-              builder: (BuildContext context) {
-                /// Custom Image Viewer widget
-                return CustomImageViewer.show(
-                    context: context,
-                    url: imagePath,
-                    fit: BoxFit.fill,
-                    radius: 10);
-              },
-            );
-          }).toList(),
+          items: isOrderAgain
+              ? AppMock.orderAgain.map(
+                  (imagePath) {
+                    return Builder(
+                      builder: (BuildContext context) {
+                        imagePath.length;
+                        return CustomImageViewer.asset(
+                            context: context,
+                            url: imagePath,
+                            fit: BoxFit.fill,
+                            radius: 10);
+                      },
+                    );
+                  },
+                ).toList()
+              : AppMock.localShop.map(
+                  (imagePath) {
+                    return Builder(
+                      builder: (BuildContext context) {
+                        imagePath.length;
+                        return CustomImageViewer.asset(
+                            context: context,
+                            url: imagePath,
+                            fit: BoxFit.fill,
+                            radius: 10);
+                      },
+                    );
+                  },
+                ).toList(),
         ),
         const SizedBox(
           height: 10,
@@ -338,12 +362,12 @@ class _HomePageState extends State<HomePage> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: List.generate(
-            AppData.outerStyleImages.length,
+            AppMock.orderAgain.length,
             (index) {
               bool isSelected = outerCurrentPage == index;
               return GestureDetector(
                 onTap: () {
-                  outerCarouselController.animateToPage(index);
+                  // orderAgainCarouselController.animateToPage(index);
                 },
                 child: AnimatedContainer(
                   width: isSelected ? 30 : 10,
@@ -407,11 +431,10 @@ class _HomePageState extends State<HomePage> {
         } else if (state is ProductLoadFailure) {
           return const Text('Error: ');
         } else if (state is ProductLoaded) {
-          return Container(
+          return SizedBox(
             width: double.infinity,
             height: 300,
             child: GridView.builder(
-              shrinkWrap: true,
               padding: const EdgeInsets.all(16),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
@@ -419,6 +442,7 @@ class _HomePageState extends State<HomePage> {
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
               ),
+              physics: const NeverScrollableScrollPhysics(),
               itemCount: offers.length,
               itemBuilder: (context, index) {
                 return TodaySpecialItem(offer: offers[index]);
@@ -471,23 +495,42 @@ class CategoryItem extends StatelessWidget {
   }
 }
 
-class AppData {
-  AppData._();
-  static final List<String> outerStyleImages = [
-    'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/new-arrival-discount-offer-on-shoes-poster-ad-design-template-20e8be063593e460ec1eadf156df2a71_screen.jpg?ts=1607504280',
-    'https://www.mall499.com/wp-content/uploads/2021/12/banner-skechers-1.png',
-    'https://codecanyon.img.customer.envatousercontent.com/files/352931146/Preview.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=29e647d179d8704189dced38088fac34',
-    // 'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/shoes-craze-sale-facebook-ad-design-template-b1d1738fd5e9e0f6e3152ec502a1c2e1_screen.jpg?ts=1567579016',
-    // 'https://codecanyon.img.customer.envatousercontent.com/files/352468295/Preview.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=cea2b1e7878f5ef6b903f9b3625460fe',
-    // 'https://rstatic.shoecarnival.com/domain/5265_508_20231225_Winter_Season_Store_Locator_Banner2_(1).jpg',
-    // 'https://graphicsfamily.com/wp-content/uploads/2020/07/Shoes-Advertising-Banner-Design-Template-scaled.jpg',
-  ];
-}
+// class AppData {
+//   AppData._();
+//   static final List<String> outerStyleImages = [
+//     'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/new-arrival-discount-offer-on-shoes-poster-ad-design-template-20e8be063593e460ec1eadf156df2a71_screen.jpg?ts=1607504280',
+//     'https://www.mall499.com/wp-content/uploads/2021/12/banner-skechers-1.png',
+//     'https://codecanyon.img.customer.envatousercontent.com/files/352931146/Preview.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=29e647d179d8704189dced38088fac34',
+//     // 'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/shoes-craze-sale-facebook-ad-design-template-b1d1738fd5e9e0f6e3152ec502a1c2e1_screen.jpg?ts=1567579016',
+//     // 'https://codecanyon.img.customer.envatousercontent.com/files/352468295/Preview.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=cea2b1e7878f5ef6b903f9b3625460fe',
+//     // 'https://rstatic.shoecarnival.com/domain/5265_508_20231225_Winter_Season_Store_Locator_Banner2_(1).jpg',
+//     // 'https://graphicsfamily.com/wp-content/uploads/2020/07/Shoes-Advertising-Banner-Design-Template-scaled.jpg',
+//   ];
+// }
 
 class CustomImageViewer {
   CustomImageViewer._();
 
-  static show(
+  static asset(
+      {required BuildContext context,
+      required String url,
+      BoxFit? fit,
+      double? radius}) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Theme.of(context).dialogBackgroundColor,
+        borderRadius: BorderRadius.circular(
+          radius ?? 8,
+        ),
+        image: DecorationImage(
+          image: AssetImage(url),
+          fit: fit ?? BoxFit.cover,
+        ),
+      ),
+    );
+  }
+
+  static network(
       {required BuildContext context,
       required String url,
       BoxFit? fit,
