@@ -1,4 +1,4 @@
-# Desafio para processo seletivo da Bento Delivery.
+# Challenge for the Bento Delivery selection process.
 
 [![Flutter](https://img.shields.io/badge/Flutter-Bloc-blue?style=for-the-badge&logo=flutter&logoColor=white&labelColor=101010)](https://developer.mozilla.org/es/docs/Web/JavaScript) 
 
@@ -6,21 +6,29 @@
 
 ![](./assets/images/design.png)
 
-## V1
+## Version
 
 <div style="text-align: center">
     <table>
         <tr>
             <td style="text-align: center">
+                <tr>v1<tr>  
                 <a href="https://bloclibrary.dev/tutorials/flutter-counter">
                     <img src="./assets/images/v1.png" width="200"/>
                 </a>
-            </td>            
+            </td>          
+            <td style="text-align: center">
+                <tr>v1.2<tr>  
+                <a href="https://bloclibrary.dev/tutorials/flutter-counter">
+                    <img src="./assets/images/v2.png" width="200"/>
+                </a>
+            </td>    
+          </tr>    
     </table>
 </div>
 
 
-## Comandos iniciais do projeto
+## Commands
 
 ```
 $ git clone <project>
@@ -29,7 +37,7 @@ $ flutter pub get
 $ flutter run
 ```
 
-## Estrutura de pastas
+## Structure
 
 ```
 | lib
@@ -52,7 +60,7 @@ $ flutter run
 | — — shared/
 ```
 
-## Links relacionados
+## Links
 
 * Impacto: [Stack Overflow](https://survey.stackoverflow.co/2023/#most-popular-technologies-language) | [GitHub](https://github.blog/2023-11-08-the-state-of-open-source-and-ai/) | [Índice TIOBE](https://www.tiobe.com/tiobe-index/) | [Google Trends](https://trends.google.es/trends/explore?cat=5&date=today%205-y&q=%2Fm%2F02p97,%2Fm%2F05z1_,%2Fm%2F07sbkfb&hl=es)
 
