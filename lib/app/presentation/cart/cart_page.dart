@@ -10,7 +10,7 @@ class CartPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: const SizedBox(),
-        title: const Text('Discount Page'),
+        title: const Text('Cart Page'),
       ),
       body: Column(
         children: [

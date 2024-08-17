@@ -10,6 +10,7 @@ class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData themeData = ThemeData();
     return MaterialApp(
+      title: 'Delivery',
       theme: themeData,
       debugShowCheckedModeBanner: false,
       onGenerateRoute: RouteGenerator.onGenerate,

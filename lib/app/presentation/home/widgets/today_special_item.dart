@@ -92,49 +92,30 @@ class TodaySpecialItem extends StatelessWidget {
                             ),
                           ),
                         ),
-                        // Row(
-                        //   children: [
-                        //     Icon(Icons.star, color: Colors.amber, size: 16),
-                        //     Text('4.5'),
-                        //   ],
-                        // ),
+                        Container(
+                          width: 40,
+                          height: 30,
+                          decoration: const BoxDecoration(
+                            color: AppColors.primaryLigth,
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(10),
+                              topRight: Radius.circular(0),
+                              bottomLeft: Radius.circular(0),
+                              bottomRight: Radius.circular(10),
+                            ),
+                          ),
+                          child: IconButton(
+                            icon: const Icon(Icons.add, color: Colors.black),
+                            onPressed: () {
+                              // Adicionar lógica para adicionar o produto
+                            },
+                          ),
+                        ),
                       ],
                     ),
                   ],
                 ),
               ),
-            ),
-          ),
-
-          // Botão de adicionar
-          Positioned(
-            bottom: 10,
-            left: 155,
-            right: 10,
-            top: 210,
-            child: Container(
-              decoration: const BoxDecoration(
-                color: AppColors.primaryLigth,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(0),
-                  bottomLeft: Radius.circular(0),
-                  bottomRight: Radius.circular(10),
-                ),
-              ),
-            ),
-          ),
-
-          Positioned(
-            bottom: 10,
-            left: 150,
-            right: 10,
-            top: 205,
-            child: IconButton(
-              icon: const Icon(Icons.add, color: Colors.black),
-              onPressed: () {
-                // Adicionar lógica para adicionar o produto
-              },
             ),
           ),
         ],
