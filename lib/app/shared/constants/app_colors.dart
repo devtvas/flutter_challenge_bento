@@ -23,4 +23,9 @@ class AppColors {
   // Categories colors
   static const Color greenLigth100 = Color(0xFFE6FAF0);
   static const Color grayLigth100 = Color(0xFFF5F5F5);
+
+  // Today Special colors
+  static const Color tSBackgroundOrange = Color(0xFFFAF0DC);
+  static const Color tSBackgroundGreen = Color(0xFFE6FADC);
+  static const Color todaySpecialText = Color(0xFF50E19B);
 }

@@ -26,19 +26,39 @@ class AppMock {
   static const products = [
     {
       "id": "1",
-      "name": "Apple",
-      "description": "Fresh and crispy apple",
+      "name": "Special Onion",
+      "description": "Fresh and crispy orange",
       "category": "Fruits",
       "image": "https://example.com/apple.jpg",
-      "price": 2.99
+      "price": 5.99,
+      "color": "orange"
     },
     {
       "id": "2",
-      "name": "Milk",
-      "description": "Whole long-life milk",
+      "name": "Green Cabbage",
+      "description": "Whole long-life cabbage",
       "category": "Dairy",
       "image": "https://example.com/milk.jpg",
-      "price": 4.50
+      "price": 6.90,
+      "color": "green"
+    },
+    {
+      "id": "3",
+      "name": "Red Berry",
+      "description": "Whole long-life berry",
+      "category": "Fruits",
+      "image": "https://example.com/milk.jpg",
+      "price": 6.85,
+      "color": "red"
+    },
+    {
+      "id": "4",
+      "name": "Organic Lemon",
+      "description": "Fresh and crispy lemon",
+      "category": "Fruits",
+      "image": "https://example.com/chicken.jpg",
+      "price": 7.99,
+      "color": "yellow"
     }
   ];
 }

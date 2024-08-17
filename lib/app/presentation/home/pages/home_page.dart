@@ -52,11 +52,11 @@ class _HomePageState extends State<HomePage> {
               _cardOptions(),
               const SizedBox(height: 16),
               _carouselOptions(height, width),
-              const SizedBox(height: 30),
+              const SizedBox(height: 20),
               TextDescription(textDescription: 'Shop by category'),
               const SizedBox(height: 8),
               _category(),
-              const SizedBox(height: 8),
+              const SizedBox(height: 20),
               TextDescription(
                 textDescription: "Today's Special",
                 textButton: "See all",
@@ -426,9 +426,39 @@ class _HomePageState extends State<HomePage> {
   // 5
 
   final List<TodaySpecialOffer> offers = [
-    TodaySpecialOffer(name: 'Orange', image: AppIcons.fish, rating: 4.5),
-    TodaySpecialOffer(name: 'Cabbage', image: AppIcons.fish, rating: 4.5),
-    // Add more offers as needed
+    TodaySpecialOffer(
+      name: "Special Onion",
+      image: AppImages.todaySpecial1,
+      rating:
+          4.5, // Adicionei um valor de rating, já que não estava nos dados originais
+      description: "Fresh and crispy orange",
+      price: 5.99, // Convertido para centavos para usar int
+      color: Colors.orange,
+    ),
+    TodaySpecialOffer(
+      name: "Green Cabbage",
+      image: AppImages.todaySpecial2,
+      rating: 4.2, // Valor de rating arbitrário
+      description: "Whole long-life cabbage",
+      price: 6.90, // Convertido para centavos
+      color: Colors.green,
+    ),
+    TodaySpecialOffer(
+      name: "Red Berry",
+      image: AppImages.todaySpecial3,
+      rating: 4.7, // Valor de rating arbitrário
+      description: "Whole long-life berry",
+      price: 6.85, // Convertido para centavos
+      color: Colors.red,
+    ),
+    TodaySpecialOffer(
+      name: "Organic Lemon",
+      image: AppImages.todaySpecial4,
+      rating: 4.3, // Valor de rating arbitrário
+      description: "Fresh and crispy lemon",
+      price: 7.99, // Convertido para centavos
+      color: Colors.yellow,
+    ),
   ];
 
   Widget _todaySpecial() {
@@ -440,23 +470,22 @@ class _HomePageState extends State<HomePage> {
         } else if (state is ProductLoadFailure) {
           return const Text('Error: ');
         } else if (state is ProductLoaded) {
-          return SizedBox(
-            width: double.infinity,
-            height: 300,
-            child: GridView.builder(
-              padding: const EdgeInsets.all(16),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 0.8,
-                crossAxisSpacing: 16,
-                mainAxisSpacing: 16,
-              ),
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: offers.length,
-              itemBuilder: (context, index) {
-                return TodaySpecialItem(offer: offers[index]);
-              },
+          return GridView.builder(
+            padding: const EdgeInsets.all(16),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 0.8, // Ajuste este valor conforme necessário
+              crossAxisSpacing: 16,
+              mainAxisSpacing: 16,
             ),
+            shrinkWrap: true, // Isso faz o GridView se ajustar ao conteúdo
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: offers.length,
+            itemBuilder: (context, index) {
+              return TodaySpecialItem(
+                offer: offers[index],
+              );
+            },
           );
         }
         return const SizedBox(height: 32);

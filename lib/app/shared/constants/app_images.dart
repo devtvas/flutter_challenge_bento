@@ -24,4 +24,11 @@ class AppImages {
 
   // not found images
   static const notFound1 = 'assets/images/not_found1.png';
+
+  // today special images
+  static const todaySpecial1 = 'assets/images/today_special1.png';
+  static const todaySpecial2 = 'assets/images/today_special2.png';
+  static const todaySpecial3 = 'assets/images/today_special3.png';
+  static const todaySpecial4 = 'assets/images/today_special4.png';
+  // more images...
 }

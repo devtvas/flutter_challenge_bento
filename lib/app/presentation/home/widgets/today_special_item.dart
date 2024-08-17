@@ -4,22 +4,25 @@ import 'package:flutter_challenge_bento/app/data/models/today_special_model.dart
 class TodaySpecialItem extends StatelessWidget {
   final TodaySpecialOffer offer;
 
-  const TodaySpecialItem({Key? key, required this.offer}) : super(key: key);
+  const TodaySpecialItem({
+    super.key,
+    required this.offer,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: offer.color,
         borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.2),
-            spreadRadius: 1,
-            blurRadius: 4,
-            offset: Offset(0, 2),
-          ),
-        ],
+        // boxShadow: [
+        //   BoxShadow(
+        //     color: Colors.grey.withOpacity(0.2),
+        //     spreadRadius: 1,
+        //     blurRadius: 4,
+        //     offset: const Offset(0, 2),
+        //   ),
+        // ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
