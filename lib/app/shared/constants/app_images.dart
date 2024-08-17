@@ -18,9 +18,9 @@ class AppImages {
   static const orderAgain3 = 'assets/images/order_again3.png';
 
   // order shop images
-  static const orderShop1 = 'assets/images/order_shop1.png';
-  static const orderShop2 = 'assets/images/order_shop2.png';
-  static const orderShop3 = 'assets/images/order_shop3.png';
+  static const localShop1 = 'assets/images/local_shop1.png';
+  static const localShop2 = 'assets/images/local_shop2.png';
+  static const localShop3 = 'assets/images/local_shop3.png';
 
   // not found images
   static const notFound1 = 'assets/images/not_found1.png';

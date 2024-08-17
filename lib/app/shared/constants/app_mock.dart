@@ -10,9 +10,9 @@ class AppMock {
   ];
 
   static const localShop = [
-    AppImages.orderShop1,
-    AppImages.orderShop2,
-    AppImages.orderShop3,
+    AppImages.localShop1,
+    AppImages.localShop2,
+    AppImages.localShop3,
   ];
 
   static const categories = [
