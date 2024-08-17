@@ -27,5 +27,6 @@ class AppColors {
   // Today Special colors
   static const Color tSBackgroundOrange = Color(0xFFFAF0DC);
   static const Color tSBackgroundGreen = Color(0xFFE6FADC);
-  static const Color todaySpecialText = Color(0xFF50E19B);
+  static const Color tSBackgroundRed = Color(0xFFFFF0F3);
+  static const Color tSBackgroundYellow = Color(0xFFFEFBE1);
 }

@@ -433,7 +433,7 @@ class _HomePageState extends State<HomePage> {
           4.5, // Adicionei um valor de rating, já que não estava nos dados originais
       description: "Fresh and crispy orange",
       price: 5.99, // Convertido para centavos para usar int
-      color: Colors.orange,
+      color: AppColors.tSBackgroundOrange,
     ),
     TodaySpecialOffer(
       name: "Green Cabbage",
@@ -441,7 +441,7 @@ class _HomePageState extends State<HomePage> {
       rating: 4.2, // Valor de rating arbitrário
       description: "Whole long-life cabbage",
       price: 6.90, // Convertido para centavos
-      color: Colors.green,
+      color: AppColors.tSBackgroundGreen,
     ),
     TodaySpecialOffer(
       name: "Red Berry",
@@ -449,7 +449,7 @@ class _HomePageState extends State<HomePage> {
       rating: 4.7, // Valor de rating arbitrário
       description: "Whole long-life berry",
       price: 6.85, // Convertido para centavos
-      color: Colors.red,
+      color: AppColors.tSBackgroundRed,
     ),
     TodaySpecialOffer(
       name: "Organic Lemon",
@@ -457,7 +457,7 @@ class _HomePageState extends State<HomePage> {
       rating: 4.3, // Valor de rating arbitrário
       description: "Fresh and crispy lemon",
       price: 7.99, // Convertido para centavos
-      color: Colors.yellow,
+      color: AppColors.tSBackgroundYellow,
     ),
   ];
 
